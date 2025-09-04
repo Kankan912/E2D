@@ -64,19 +64,25 @@ function App() {
 
   return (
     <Router>
-      <Layout user={user} onLogout={handleLogout}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/membres" element={<Membres />} />
-          <Route path="/cotisations" element={<Cotisations />} />
-          <Route path="/prets" element={<Prets />} />
-          <Route path="/sanctions" element={<Sanctions />} />
-          <Route path="/aides" element={<AidesSociales />} />
-          <Route path="/sport" element={<Sport />} />
-          <Route path="/rapports" element={<Rapports />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/app/*" element={
+          <Layout user={user} onLogout={handleLogout}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/membres" element={<Membres />} />
+              <Route path="/cotisations" element={<Cotisations />} />
+              <Route path="/prets" element={<Prets />} />
+              <Route path="/sanctions" element={<Sanctions />} />
+              <Route path="/aides" element={<AidesSociales />} />
+              <Route path="/sport" element={<Sport />} />
+              <Route path="/rapports" element={<Rapports />} />
+            </Routes>
+          </Layout>
+        } />
+      </Routes>
     </Router>
   )
 }
+export default App

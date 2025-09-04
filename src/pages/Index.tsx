@@ -41,7 +41,7 @@ export function Index() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/dashboard"
+                to="/app/dashboard"
                 className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2"
               >
                 <span>Accéder à l'application</span>
@@ -68,7 +68,7 @@ export function Index() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Gestion des Membres */}
-          <Link to="/membres" className="group">
+          <Link to="/app/membres" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -88,7 +88,7 @@ export function Index() {
           </Link>
 
           {/* Cotisations */}
-          <Link to="/cotisations" className="group">
+          <Link to="/app/cotisations" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -108,7 +108,7 @@ export function Index() {
           </Link>
 
           {/* Prêts */}
-          <Link to="/prets" className="group">
+          <Link to="/app/prets" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -128,7 +128,7 @@ export function Index() {
           </Link>
 
           {/* Sanctions */}
-          <Link to="/sanctions" className="group">
+          <Link to="/app/sanctions" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
@@ -148,7 +148,7 @@ export function Index() {
           </Link>
 
           {/* Aides Sociales */}
-          <Link to="/aides" className="group">
+          <Link to="/app/aides" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
@@ -168,7 +168,7 @@ export function Index() {
           </Link>
 
           {/* Sport */}
-          <Link to="/sport" className="group">
+          <Link to="/app/sport" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -188,7 +188,7 @@ export function Index() {
           </Link>
 
           {/* Rapports */}
-          <Link to="/rapports" className="group">
+          <Link to="/app/rapports" className="group">
             <div className="card hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -380,7 +380,7 @@ export function Index() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/dashboard"
+              to="/app/dashboard"
               className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors"
             >
               <span>Tableau de bord</span>

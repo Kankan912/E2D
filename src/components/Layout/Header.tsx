@@ -33,49 +33,49 @@ export function Header({ user, onLogout }: HeaderProps) {
           {/* Navigation Desktop */}
           <nav className="hidden md:flex space-x-8">
             <Link
-              to="/dashboard"
+              to="/app/dashboard"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Tableau de bord
             </Link>
             <Link
-              to="/membres"
+              to="/app/membres"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Membres
             </Link>
             <Link
-              to="/cotisations"
+              to="/app/cotisations"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Cotisations
             </Link>
             <Link
-              to="/prets"
+              to="/app/prets"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Prêts
             </Link>
             <Link
-              to="/sanctions"
+              to="/app/sanctions"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Sanctions
             </Link>
             <Link
-              to="/aides"
+              to="/app/aides"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Aides
             </Link>
             <Link
-              to="/sport"
+              to="/app/sport"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Sport
             </Link>
             <Link
-              to="/rapports"
+              to="/app/rapports"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Rapports
@@ -118,49 +118,49 @@ export function Header({ user, onLogout }: HeaderProps) {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
-                to="/dashboard"
+                to="/app/dashboard"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Tableau de bord
               </Link>
               <Link
-                to="/membres"
+                to="/app/membres"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Membres
               </Link>
               <Link
-                to="/cotisations"
+                to="/app/cotisations"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Cotisations
               </Link>
               <Link
-                to="/prets"
+                to="/app/prets"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Prêts
               </Link>
               <Link
-                to="/sanctions"
+                to="/app/sanctions"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Sanctions
               </Link>
               <Link
-                to="/aides"
+                to="/app/aides"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Aides
               </Link>
               <Link
-                to="/sport"
+                to="/app/sport"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Sport
               </Link>
               <Link
-                to="/rapports"
+                to="/app/rapports"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Rapports
