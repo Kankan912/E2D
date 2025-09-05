@@ -1,3 +1,4 @@
+import React from 'react'
 import { Users, DollarSign, Calendar, AlertTriangle } from 'lucide-react'
 import { DashboardCard } from '../components/Dashboard/DashboardCard'
 

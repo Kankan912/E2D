@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { Users, Trophy, Calendar, Target, Plus, Search, Filter, Eye, Edit, UserPlus } from 'lucide-react'
 import { formatDate } from '../lib/utils'

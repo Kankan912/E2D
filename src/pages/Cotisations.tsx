@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { Plus, Search, DollarSign, Calendar, AlertTriangle, CheckCircle, Clock, Filter } from 'lucide-react'
 import { cotisations, membres } from '../lib/supabase'
