@@ -435,7 +435,7 @@ export function Index() {
             <p>&copy; 2024 Association E2D. Tous droits réservés.</p>
           </div>
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
