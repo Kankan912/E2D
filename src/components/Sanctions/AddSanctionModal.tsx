@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { X, AlertTriangle, Plus } from 'lucide-react'
 import { sanctions } from '../../lib/supabase'

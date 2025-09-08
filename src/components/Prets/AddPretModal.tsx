@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { X, Upload, AlertTriangle } from 'lucide-react'
 import { prets } from '../../lib/supabase'

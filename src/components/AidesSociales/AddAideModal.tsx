@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { X, Upload, AlertTriangle, Heart } from 'lucide-react'
 import { aidesSociales, dettesFondSouverain } from '../../lib/supabase'

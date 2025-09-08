@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { X, CheckCircle, RefreshCw } from 'lucide-react'
 import { prets } from '../../lib/supabase'
