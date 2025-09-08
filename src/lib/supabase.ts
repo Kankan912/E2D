@@ -48,7 +48,7 @@ export const membres = {
       .from('membres')
       .select(`
         *,
-        membres_roles (
+        membres_roles!membres_roles_membre_id_fkey (
           roles (*)
         )
       `)
@@ -61,7 +61,7 @@ export const membres = {
       .from('membres')
       .select(`
         *,
-        membres_roles (
+        membres_roles!membres_roles_membre_id_fkey (
           roles (*)
         )
       `)
