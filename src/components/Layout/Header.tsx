@@ -20,33 +20,30 @@ export function Header({ user, onLogout }: HeaderProps) {
   const isActive = (path: string) => location.pathname === path
 
   const navItems = [
-    { path: '/app/dashboard', label: 'Tableau de bord', icon: '📊' },
-    { path: '/app/membres', label: 'Membres', icon: '👥' },
-    { path: '/app/cotisations', label: 'Cotisations', icon: '💰' },
-    { path: '/app/prets', label: 'Prêts', icon: '🏦' },
-    { path: '/app/sanctions', label: 'Sanctions', icon: '⚖️' },
-    { path: '/app/aides', label: 'Aides', icon: '❤️' },
-    { path: '/app/sport', label: 'Sport', icon: '⚽' },
-    { path: '/app/rapports', label: 'Rapports', icon: '📋' },
+    { path: '/app/dashboard', label: 'Tableau de bord' },
+    { path: '/app/membres', label: 'Membres' },
+    { path: '/app/cotisations', label: 'Cotisations' },
+    { path: '/app/prets', label: 'Prêts' },
+    { path: '/app/sanctions', label: 'Sanctions' },
+    { path: '/app/aides', label: 'Aides' },
+    { path: '/app/sport', label: 'Sport' },
+    { path: '/app/rapports', label: 'Rapports' },
   ]
 
   return (
-    <header className="bg-white bg-opacity-80 backdrop-blur-md shadow-soft border-b border-gray-100 sticky top-0 z-40">
+    <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center shadow-medium group-hover:shadow-large transition-all duration-200 group-hover:scale-105">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">E2D</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-lg font-semibold text-gray-900">
                   Association E2D
                 </span>
-                <div className="text-xs text-gray-500">
-                  Gestion moderne
-                </div>
               </div>
             </Link>
           </div>
@@ -59,7 +56,6 @@ export function Header({ user, onLogout }: HeaderProps) {
                 to={item.path}
                 className={`nav-link ${isActive(item.path) ? 'nav-link-active' : ''}`}
               >
-                <span className="mr-2">{item.icon}</span>
                 {item.label}
               </Link>
             ))}
@@ -70,7 +66,7 @@ export function Header({ user, onLogout }: HeaderProps) {
             {user && (
               <>
                 {/* Notifications */}
-                <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all duration-200">
+                <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition-colors">
                   <Bell className="w-5 h-5" />
                 </button>
 
@@ -78,9 +74,9 @@ export function Header({ user, onLogout }: HeaderProps) {
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center space-x-3 p-2 rounded-xl hover:bg-gray-100 transition-all duration-200 group"
+                    className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
+                    <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                       <User className="w-4 h-4 text-white" />
                     </div>
                     <div className="hidden sm:block text-left">
@@ -95,7 +91,7 @@ export function Header({ user, onLogout }: HeaderProps) {
 
                   {/* Dropdown Menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-large border border-gray-100 py-2 animate-slide-down">
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 animate-slide-down">
                       <div className="px-4 py-3 border-b border-gray-100">
                         <div className="text-sm font-medium text-gray-900">
                           {user.prenom} {user.nom}
@@ -126,7 +122,7 @@ export function Header({ user, onLogout }: HeaderProps) {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all duration-200"
+              className="lg:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100"
             >
               {isMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -140,19 +136,18 @@ export function Header({ user, onLogout }: HeaderProps) {
         {/* Navigation Mobile */}
         {isMenuOpen && (
           <div className="lg:hidden animate-slide-down">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-2xl mt-2 shadow-large border border-gray-100">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+                  className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${
                     isActive(item.path)
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span className="mr-3">{item.icon}</span>
                   {item.label}
                 </Link>
               ))}

@@ -28,9 +28,6 @@ export function Membres() {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState<'tous' | 'actif' | 'inactif' | 'suspendu'>('tous')
-  const [showAddModal, setShowAddModal] = useState(false)
-  const [selectedMembre, setSelectedMembre] = useState<Membre | null>(null)
-  const [showEditModal, setShowEditModal] = useState(false)
 
   useEffect(() => {
     loadMembres()
@@ -73,9 +70,9 @@ export function Membres() {
 
   const getStatusBadge = (statut: string) => {
     const styles = {
-      actif: 'bg-green-100 text-green-800',
-      inactif: 'bg-gray-100 text-gray-800',
-      suspendu: 'bg-red-100 text-red-800'
+      actif: 'badge-success',
+      inactif: 'badge-gray',
+      suspendu: 'badge-danger'
     }
     return styles[statut as keyof typeof styles] || styles.inactif
   }
@@ -87,7 +84,7 @@ export function Membres() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -102,12 +99,9 @@ export function Membres() {
             {membresData.length} membre{membresData.length > 1 ? 's' : ''} enregistré{membresData.length > 1 ? 's' : ''}
           </p>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="btn-primary flex items-center space-x-2"
-        >
+        <button className="btn-primary">
           <Plus className="w-5 h-5" />
-          <span>Nouveau membre</span>
+          Nouveau membre
         </button>
       </div>
 
@@ -128,7 +122,7 @@ export function Membres() {
           </div>
           <div className="md:w-48">
             <select
-              className="form-input"
+              className="form-select"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as any)}
             >
@@ -142,150 +136,130 @@ export function Membres() {
       </div>
 
       {/* Liste des membres */}
-      <div className="card">
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Membre
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Contact
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Rôles
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Statut
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Cotisation
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Adhésion
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {filteredMembres.map((membre) => (
-                <tr key={membre.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        {membre.photo_url ? (
-                          <img
-                            className="h-10 w-10 rounded-full object-cover"
-                            src={membre.photo_url}
-                            alt={`${membre.prenom} ${membre.nom}`}
-                          />
-                        ) : (
-                          <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                            <span className="text-sm font-medium text-gray-700">
-                              {membre.prenom[0]}{membre.nom[0]}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">
-                          {membre.prenom} {membre.nom}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          ID: {membre.id.slice(0, 8)}...
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{membre.email}</div>
-                    <div className="text-sm text-gray-500">{membre.telephone || 'Non renseigné'}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{getRoles(membre)}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusBadge(membre.statut)}`}>
-                      {membre.statut}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {membre.montant_cotisation_mensuelle.toLocaleString()} FCFA
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatDate(membre.date_adhesion)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="flex items-center justify-end space-x-2">
-                      <button
-                        onClick={() => {
-                          setSelectedMembre(membre)
-                          setShowEditModal(true)
-                        }}
-                        className="text-indigo-600 hover:text-indigo-900"
-                        title="Modifier"
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      
-                      {membre.statut === 'actif' ? (
-                        <button
-                          onClick={() => handleStatusChange(membre.id, 'inactif')}
-                          className="text-orange-600 hover:text-orange-900"
-                          title="Désactiver"
-                        >
-                          <UserX className="w-4 h-4" />
-                        </button>
+      <div className="table-container">
+        <table className="table">
+          <thead className="table-header">
+            <tr>
+              <th className="table-header-cell">Membre</th>
+              <th className="table-header-cell">Contact</th>
+              <th className="table-header-cell">Rôles</th>
+              <th className="table-header-cell">Statut</th>
+              <th className="table-header-cell">Cotisation</th>
+              <th className="table-header-cell">Adhésion</th>
+              <th className="table-header-cell text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="table-body">
+            {filteredMembres.map((membre) => (
+              <tr key={membre.id} className="table-row">
+                <td className="table-cell">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 h-10 w-10">
+                      {membre.photo_url ? (
+                        <img
+                          className="h-10 w-10 rounded-full object-cover"
+                          src={membre.photo_url}
+                          alt={`${membre.prenom} ${membre.nom}`}
+                        />
                       ) : (
-                        <button
-                          onClick={() => handleStatusChange(membre.id, 'actif')}
-                          className="text-green-600 hover:text-green-900"
-                          title="Activer"
-                        >
-                          <UserCheck className="w-4 h-4" />
-                        </button>
+                        <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+                          <span className="text-sm font-medium text-gray-700">
+                            {membre.prenom[0]}{membre.nom[0]}
+                          </span>
+                        </div>
                       )}
-                      
-                      <button
-                        className="text-blue-600 hover:text-blue-900"
-                        title="Voir détails"
-                      >
-                        <Eye className="w-4 h-4" />
-                      </button>
-                      
-                      <button
-                        className="text-red-600 hover:text-red-900"
-                        title="Supprimer"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
                     </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          
-          {filteredMembres.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-gray-500">
-                {searchTerm || statusFilter !== 'tous' 
-                  ? 'Aucun membre ne correspond aux critères de recherche'
-                  : 'Aucun membre enregistré'
-                }
-              </div>
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {membre.prenom} {membre.nom}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        ID: {membre.id.slice(0, 8)}...
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td className="table-cell">
+                  <div className="text-sm text-gray-900">{membre.email}</div>
+                  <div className="text-sm text-gray-500">{membre.telephone || 'Non renseigné'}</div>
+                </td>
+                <td className="table-cell">
+                  <div className="text-sm text-gray-900">{getRoles(membre)}</div>
+                </td>
+                <td className="table-cell">
+                  <span className={`badge ${getStatusBadge(membre.statut)}`}>
+                    {membre.statut}
+                  </span>
+                </td>
+                <td className="table-cell">
+                  {membre.montant_cotisation_mensuelle.toLocaleString()} FCFA
+                </td>
+                <td className="table-cell">
+                  {formatDate(membre.date_adhesion)}
+                </td>
+                <td className="table-cell text-right">
+                  <div className="flex items-center justify-end space-x-2">
+                    <button
+                      className="text-indigo-600 hover:text-indigo-900 p-1"
+                      title="Modifier"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    
+                    {membre.statut === 'actif' ? (
+                      <button
+                        onClick={() => handleStatusChange(membre.id, 'inactif')}
+                        className="text-orange-600 hover:text-orange-900 p-1"
+                        title="Désactiver"
+                      >
+                        <UserX className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleStatusChange(membre.id, 'actif')}
+                        className="text-success-600 hover:text-success-900 p-1"
+                        title="Activer"
+                      >
+                        <UserCheck className="w-4 h-4" />
+                      </button>
+                    )}
+                    
+                    <button
+                      className="text-primary-600 hover:text-primary-900 p-1"
+                      title="Voir détails"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+                    
+                    <button
+                      className="text-danger-600 hover:text-danger-900 p-1"
+                      title="Supprimer"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        
+        {filteredMembres.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-500">
+              {searchTerm || statusFilter !== 'tous' 
+                ? 'Aucun membre ne correspond aux critères de recherche'
+                : 'Aucun membre enregistré'
+              }
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Statistiques rapides */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="card text-center">
-          <div className="text-2xl font-bold text-green-600">
+          <div className="text-2xl font-bold text-success-600">
             {membresData.filter(m => m.statut === 'actif').length}
           </div>
           <div className="text-sm text-gray-600">Membres actifs</div>
@@ -297,13 +271,13 @@ export function Membres() {
           <div className="text-sm text-gray-600">Membres inactifs</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-red-600">
+          <div className="text-2xl font-bold text-danger-600">
             {membresData.filter(m => m.statut === 'suspendu').length}
           </div>
           <div className="text-sm text-gray-600">Membres suspendus</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-blue-600">
+          <div className="text-2xl font-bold text-primary-600">
             {membresData.reduce((sum, m) => sum + m.montant_cotisation_mensuelle, 0).toLocaleString()}
           </div>
           <div className="text-sm text-gray-600">Total cotisations (FCFA)</div>
